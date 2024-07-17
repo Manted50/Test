@@ -69,6 +69,7 @@ public class Order {
 
     public String toString(){
         return "Total Price: " + totalPrice + ", Count: " + count + ", Shipping Cost: " + shippingCost;
+        
     }
 
 }

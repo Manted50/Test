@@ -8,4 +8,5 @@ public class PriceObserver implements OrderObserver{
             order.setTotalPrice(order.getTotalPrice()-20);
         }
     }
+  
 }

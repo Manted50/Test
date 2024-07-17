@@ -8,4 +8,5 @@ public class QuantityObserver implements OrderObserver {
             order.setShippingCost(0);
         }
     }
+  
 }
