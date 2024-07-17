@@ -7,13 +7,16 @@ public class Order {
     double totalPrice;
     int count;
     int shippingCost;
+    int id;
 
     private ArrayList<OrderObserver> observers = new ArrayList<>();
 
-    public Order(double totalPrice, int count) {
+    public Order(double totalPrice, int count, int id) {
         this.totalPrice = totalPrice;
         this.count = count;
+        this.id = id;
         this.shippingCost = 10;
+        notifyObservers();
     }
 
     public void attach(OrderObserver observer){
@@ -24,9 +27,9 @@ public class Order {
         observers.remove(observer);
     }
 
-    public void notifyObservers(Order order) {
-        for(OrderObserver observer:observers) {
-            observer.update(order);
+    public void notifyObservers() {
+        for(OrderObserver observer:this.observers) {
+            observer.update(this);
         }
     }
 
@@ -54,8 +57,18 @@ public class Order {
         this.shippingCost = shippingCost;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void addItem(double price){
+        totalPrice += price;
+        count += 1;
+        notifyObservers();
+    }
+
     public String toString(){
-        return "Total Price: " + totalPrice + ", Count: " + count;
+        return "Total Price: " + totalPrice + ", Count: " + count + ", Shipping Cost: " + shippingCost;
     }
 
 }
